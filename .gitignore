@@ -1,0 +1,35 @@
+# Archivos compilados
+*.o
+*.obj
+*.exe
+*.out
+filesystem
+filesystem.exe
+
+# Archivos de depuración
+*.dSYM/
+*.dSYM
+*.su
+*.idb
+*.pdb
+
+# Archivos de respaldo
+*~
+*.bak
+*.swp
+*.swo
+
+# Directorios de build
+build/
+bin/
+obj/
+
+# Archivos de IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+

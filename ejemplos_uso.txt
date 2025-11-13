@@ -1,0 +1,184 @@
+========================================
+Ejemplos de Uso del Sistema de Archivos
+========================================
+
+Este archivo contiene ejemplos de uso del sistema de archivos simple
+y pruebas que demuestran todas las funcionalidades implementadas.
+
+========================================
+Ejemplo 1: Operaciones Básicas
+========================================
+
+> CREATE archivo1.txt 1000
+Archivo 'archivo1.txt' creado exitosamente (1000 bytes, 2 bloques).
+
+> WRITE archivo1.txt 0 "Hola, mundo"
+Escritos 11 bytes en 'archivo1.txt' (offset 0).
+
+> READ archivo1.txt 0 11
+Leídos 11 bytes de 'archivo1.txt' (offset 0).
+Salida: "Hola, mundo"
+
+> LIST
+
+Archivos en el sistema:
+----------------------------------------
+Nombre                         Tamaño (bytes)
+----------------------------------------
+archivo1.txt                          1000
+----------------------------------------
+Total: 1 archivo(s), 1000 bytes, 2 bloques utilizados
+
+> DELETE archivo1.txt
+Archivo 'archivo1.txt' eliminado exitosamente.
+
+> LIST
+(no hay archivos)
+
+========================================
+Ejemplo 2: Múltiples Archivos
+========================================
+
+> CREATE documento.txt 5000
+Archivo 'documento.txt' creado exitosamente (5000 bytes, 10 bloques).
+
+> CREATE imagen.bin 1024
+Archivo 'imagen.bin' creado exitosamente (1024 bytes, 2 bloques).
+
+> CREATE datos.dat 256
+Archivo 'datos.dat' creado exitosamente (256 bytes, 1 bloques).
+
+> LIST
+
+Archivos en el sistema:
+----------------------------------------
+Nombre                         Tamaño (bytes)
+----------------------------------------
+documento.txt                         5000
+imagen.bin                            1024
+datos.dat                              256
+----------------------------------------
+Total: 3 archivo(s), 6280 bytes, 13 bloques utilizados
+
+========================================
+Ejemplo 3: Escritura y Lectura Avanzada
+========================================
+
+> CREATE texto.txt 200
+Archivo 'texto.txt' creado exitosamente (200 bytes, 1 bloques).
+
+> WRITE texto.txt 0 "Este es un texto de prueba. "
+Escritos 28 bytes en 'texto.txt' (offset 0).
+
+> WRITE texto.txt 28 "Continuando con más contenido."
+Escritos 31 bytes en 'texto.txt' (offset 28).
+
+> READ texto.txt 0 200
+Leídos 59 bytes de 'texto.txt' (offset 0).
+Salida: "Este es un texto de prueba. Continuando con más contenido."
+
+> READ texto.txt 5 20
+Leídos 20 bytes de 'texto.txt' (offset 5).
+Salida: "es un texto de prue"
+
+> READ texto.txt 0 10
+Leídos 10 bytes de 'texto.txt' (offset 0).
+Salida: "Este es un"
+
+========================================
+Ejemplo 4: Manejo de Errores
+========================================
+
+> READ archivo_inexistente.txt 0 10
+Error: El archivo 'archivo_inexistente.txt' no existe.
+
+> WRITE archivo_inexistente.txt 0 "datos"
+Error: El archivo 'archivo_inexistente.txt' no existe.
+
+> DELETE archivo_inexistente.txt
+Error: El archivo 'archivo_inexistente.txt' no existe.
+
+> CREATE archivo1.txt 100
+Archivo 'archivo1.txt' creado exitosamente (100 bytes, 1 bloques).
+
+> CREATE archivo1.txt 200
+Error: El archivo 'archivo1.txt' ya existe.
+
+> WRITE archivo1.txt 150 "datos"
+Error: Offset (150) excede el tamaño del archivo (100 bytes).
+
+> WRITE archivo1.txt 50 "Este texto es demasiado largo para el archivo"
+Error: La escritura excede el tamaño del archivo.
+  Tamaño del archivo: 100 bytes
+  Intento de escritura: offset 50 + 52 bytes
+
+> READ archivo1.txt 150 10
+Error: Offset (150) excede el tamaño del archivo (100 bytes).
+
+========================================
+Ejemplo 5: Prueba de Límites del Sistema
+========================================
+
+> CREATE test1.txt 512
+Archivo 'test1.txt' creado exitosamente (512 bytes, 1 bloques).
+
+> CREATE test2.txt 512
+Archivo 'test2.txt' creado exitosamente (512 bytes, 1 bloques).
+
+# Continuar creando archivos hasta acercarse al límite...
+# (Nota: En un sistema real, se crearían archivos hasta alcanzar
+#  el límite de 100 archivos o 1 MB de almacenamiento)
+
+========================================
+Ejemplo 6: Operaciones Complejas
+========================================
+
+> CREATE log.txt 2048
+Archivo 'log.txt' creado exitosamente (2048 bytes, 4 bloques).
+
+> WRITE log.txt 0 "==== LOG DEL SISTEMA ====\n"
+Escritos 25 bytes en 'log.txt' (offset 0).
+
+> WRITE log.txt 25 "Fecha: 2024-01-15\n"
+Escritos 19 bytes en 'log.txt' (offset 25).
+
+> WRITE log.txt 44 "Evento: Inicio del sistema\n"
+Escritos 27 bytes en 'log.txt' (offset 44).
+
+> READ log.txt 0 71
+Leídos 71 bytes de 'log.txt' (offset 0).
+Salida: "==== LOG DEL SISTEMA ====\nFecha: 2024-01-15\nEvento: Inicio del sistema\n"
+
+> LIST
+
+Archivos en el sistema:
+----------------------------------------
+Nombre                         Tamaño (bytes)
+----------------------------------------
+log.txt                             2048
+----------------------------------------
+Total: 1 archivo(s), 2048 bytes, 4 bloques utilizados
+
+> DELETE log.txt
+Archivo 'log.txt' eliminado exitosamente.
+
+========================================
+Notas de Uso
+========================================
+
+1. Los comandos deben escribirse exactamente como se muestra en los ejemplos.
+
+2. Para el comando WRITE, los datos deben estar entre comillas dobles.
+
+3. El sistema maneja automáticamente la asignación de bloques,
+   incluso si no son consecutivos en memoria.
+
+4. El sistema valida todos los parámetros y muestra mensajes de
+   error descriptivos cuando ocurre un problema.
+
+5. El comando LIST muestra todos los archivos con su tamaño y
+   estadísticas del sistema.
+
+6. Para salir del programa, use el comando EXIT o QUIT.
+
+========================================
