@@ -4,13 +4,13 @@ Implementación en C de un sistema de archivos simple que simula las operaciones
 
 ## Características
 
-- ✅ Creación de archivos con tamaño especificado
-- ✅ Escritura de datos en archivos con offset personalizado
-- ✅ Lectura de datos desde archivos
-- ✅ Eliminación de archivos y liberación de bloques
-- ✅ Listado de todos los archivos en el sistema
-- ✅ Manejo completo de errores
-- ✅ Gestión de bloques de memoria simulados
+-  Creación de archivos con tamaño especificado
+-  Escritura de datos en archivos con offset personalizado
+-  Lectura de datos desde archivos
+-  Eliminación de archivos y liberación de bloques
+-  Listado de todos los archivos en el sistema
+-  Manejo completo de errores
+-  Gestión de bloques de memoria simulados
 
 ## Especificaciones Técnicas
 
@@ -84,6 +84,9 @@ Total: 1 archivo(s), 1000 bytes, 2 bloques utilizados
 
 > DELETE archivo1.txt
 Archivo 'archivo1.txt' eliminado exitosamente.
+
+> LIST
+(no hay archivos)
 ```
 
 ## Archivos del Proyecto
@@ -98,13 +101,13 @@ Archivo 'archivo1.txt' eliminado exitosamente.
 
 El sistema maneja los siguientes errores:
 
-- ❌ Archivo no encontrado
-- ❌ Falta de espacio en el sistema
-- ❌ Offset que excede el tamaño del archivo
-- ❌ Escritura que excede el tamaño del archivo
-- ❌ Lectura fuera de límites
-- ❌ Número máximo de archivos alcanzado
-- ❌ Parámetros inválidos
+-  Archivo no encontrado
+-  Falta de espacio en el sistema
+-  Offset que excede el tamaño del archivo
+-  Escritura que excede el tamaño del archivo
+-  Lectura fuera de límites
+-  Número máximo de archivos alcanzado
+-  Parámetros inválidos
 
 ## Estructura del Código
 
@@ -127,8 +130,12 @@ El código está organizado en:
 
 ## Autores
 
-Implementado como parte de la Tarea 4 de Sistemas Operativos.
+- Raúl Marroquin
+- David Acuña
 
-## Licencia
+## Referencias
 
-Este proyecto es educativo y se proporciona sin garantías.
+Para más información detallada sobre la implementación, consulte:
+- `INFORME.md` - Informe técnico completo con estructuras de datos y decisiones de diseño
+- `ejemplos_uso.txt` - Ejemplos detallados de todas las operaciones y casos de prueba
+
