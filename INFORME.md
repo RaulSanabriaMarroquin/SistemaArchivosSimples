@@ -6,7 +6,7 @@ Este documento describe la implementación de un sistema de archivos simple en C
 
 ## Estructuras de Datos Utilizadas
 
-### 1. Estructura `FileEntry`
+1. Estructura `FileEntry`
 
 Representa un archivo individual en el sistema:
 
@@ -22,7 +22,7 @@ typedef struct {
 
 **Decisión de diseño:** Esta estructura almacena los metadatos del archivo y mantiene una lista de los índices de bloques asignados. Esto permite acceso directo a los bloques sin necesidad de búsquedas adicionales.
 
-### 2. Estructura `FileSystem`
+2. Estructura `FileSystem`
 
 Representa el sistema de archivos completo:
 
@@ -52,7 +52,7 @@ typedef struct {
 
 ## Principales Decisiones de Diseño
 
-### 1. Gestión de Bloques
+1. Gestión de Bloques
 
 **Estrategia de asignación:**
 - Primero se intenta asignar bloques consecutivos (mejor rendimiento para lectura/escritura secuencial).
@@ -61,14 +61,14 @@ typedef struct {
 
 **Justificación:** Los sistemas de archivos reales también usan estrategias similares (como ext2/3 con bloques consecutivos cuando es posible).
 
-### 2. Almacenamiento de Índices de Bloques
+2. Almacenamiento de Índices de Bloques
 
 Los índices de bloques se almacenan en el `FileEntry` en lugar de calcularlos dinámicamente. Esto permite:
 - Acceso directo a los bloques (O(1))
 - Soporte para fragmentación de archivos
 - Simplicidad en la implementación de lectura/escritura
 
-### 3. Manejo de Offset y Lectura/Escritura
+3. Manejo de Offset y Lectura/Escritura
 
 La lectura y escritura manejan correctamente:
 - Cálculo del bloque inicial basado en el offset
@@ -82,7 +82,7 @@ start_block = offset / BLOCK_SIZE;    // Bloque donde comienza
 start_pos = offset % BLOCK_SIZE;      // Posición dentro del bloque
 ```
 
-### 4. Validación de Errores
+4. Validación de Errores
 
 El sistema implementa validación exhaustiva:
 - Verificación de parámetros NULL
@@ -207,14 +207,3 @@ filesystem.exe
 - `DELETE <archivo>`
 - `LIST`
 - `EXIT`
-
-## Conclusión
-
-El sistema de archivos implementado cumple con todos los requisitos especificados:
-- ✅ Operaciones CREATE, WRITE, READ, DELETE, LIST funcionando correctamente
-- ✅ Gestión de bloques simulada con asignación y liberación
-- ✅ Manejo exhaustivo de errores
-- ✅ Código estructurado y comentado
-- ✅ Documentación completa
-
-El sistema demuestra comprensión de los conceptos fundamentales de sistemas de archivos, incluyendo gestión de bloques, tablas de archivos, y operaciones de lectura/escritura que cruzan múltiples bloques.
