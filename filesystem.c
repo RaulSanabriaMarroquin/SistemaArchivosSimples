@@ -75,10 +75,10 @@ void init_filesystem(void) {
     fs.total_storage = 0;
     
     printf("Sistema de archivos inicializado.\n");
-    printf("  - Tamaño de bloque: %d bytes\n", BLOCK_SIZE);
-    printf("  - Número máximo de archivos: %d\n", MAX_FILES);
-    printf("  - Almacenamiento máximo: %d bytes (%d KB)\n", MAX_STORAGE, MAX_STORAGE / 1024);
-    printf("  - Número máximo de bloques: %d\n\n", MAX_BLOCKS);
+    printf("  - Tamano de bloque: %d bytes\n", BLOCK_SIZE);
+    printf("  - Numero maximo de archivos: %d\n", MAX_FILES);
+    printf("  - Almacenamiento maximo: %d bytes (%d KB)\n", MAX_STORAGE, MAX_STORAGE / 1024);
+    printf("  - Numero maximo de bloques: %d\n\n", MAX_BLOCKS);
 }
 
 /**
@@ -182,12 +182,12 @@ int create_file(const char *filename, size_t size) {
     }
     
     if (size == 0) {
-        printf("Error: El tamaño del archivo debe ser mayor que cero.\n");
+        printf("Error: El tamano del archivo debe ser mayor que cero.\n");
         return -1;
     }
     
     if (size > MAX_FILE_SIZE) {
-        printf("Error: El tamaño del archivo excede el límite máximo (%d bytes).\n", MAX_FILE_SIZE);
+        printf("Error: El tamano del archivo excede el límite maximo (%d bytes).\n", MAX_FILE_SIZE);
         return -1;
     }
     
@@ -199,7 +199,7 @@ int create_file(const char *filename, size_t size) {
     
     /* Verificar si hay espacio para más archivos */
     if (fs.num_files >= MAX_FILES) {
-        printf("Error: Se ha alcanzado el número máximo de archivos (%d).\n", MAX_FILES);
+        printf("Error: Se ha alcanzado el numero maximo de archivos (%d).\n", MAX_FILES);
         return -1;
     }
     
@@ -276,7 +276,7 @@ int write_file(const char *filename, size_t offset, const char *data) {
     
     /* Validar offset */
     if (offset > file->size) {
-        printf("Error: Offset (%zu) excede el tamaño del archivo (%zu bytes).\n", 
+        printf("Error: Offset (%zu) excede el tamano del archivo (%zu bytes).\n", 
                offset, file->size);
         return -1;
     }
@@ -285,8 +285,8 @@ int write_file(const char *filename, size_t offset, const char *data) {
     
     /* Validar que no se exceda el tamaño del archivo */
     if (offset + data_len > file->size) {
-        printf("Error: La escritura excede el tamaño del archivo.\n");
-        printf("  Tamaño del archivo: %zu bytes\n", file->size);
+        printf("Error: La escritura excede el tamano del archivo.\n");
+        printf("  Tamano del archivo: %zu bytes\n", file->size);
         printf("  Intento de escritura: offset %zu + %zu bytes\n", offset, data_len);
         return -1;
     }
@@ -347,7 +347,7 @@ int read_file(const char *filename, size_t offset, size_t size, char *buffer) {
     
     /* Validar offset */
     if (offset >= file->size) {
-        printf("Error: Offset (%zu) excede el tamaño del archivo (%zu bytes).\n", 
+        printf("Error: Offset (%zu) excede el tamano del archivo (%zu bytes).\n", 
                offset, file->size);
         return -1;
     }
@@ -441,7 +441,7 @@ void list_files(void) {
     
     printf("\nArchivos en el sistema:\n");
     printf("----------------------------------------\n");
-    printf("%-30s %12s\n", "Nombre", "Tamaño (bytes)");
+    printf("%-30s %12s\n", "Nombre", "Tamano (bytes)");
     printf("----------------------------------------\n");
     
     for (size_t i = 0; i < MAX_FILES; i++) {
@@ -474,9 +474,9 @@ int main(void) {
     init_filesystem();
     
     printf("Comandos disponibles:\n");
-    printf("  CREATE <archivo> <tamaño>\n");
+    printf("  CREATE <archivo> <tamano>\n");
     printf("  WRITE <archivo> <offset> \"<datos>\"\n");
-    printf("  READ <archivo> <offset> <tamaño>\n");
+    printf("  READ <archivo> <offset> <tamano>\n");
     printf("  DELETE <archivo>\n");
     printf("  LIST\n");
     printf("  EXIT\n\n");
